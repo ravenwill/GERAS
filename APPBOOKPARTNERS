@@ -1,0 +1,557 @@
+package GERAS;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
+@SuppressWarnings({ "serial", "unused" })
+public class APPBOOKPARTNERS extends JFrame{
+  
+	JLabel l1,l2,l3,l4,sobre,LOGO,badc1,badc2;
+	public JTextField t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12;
+	JComboBox<String> SlctEmp;
+	JCheckBox fone2;
+	JButton b1,b2;
+	Integer num=0,loc1,loc11,loc12,loc13,loc2;
+	boolean botaop1=true,botaop2=true;
+	JFileChooser c;
+	String caminho,htmlaux,html,cond1,cond2,cor,ass="BOOKPARTNERS",ass2;
+	ImageIcon img1,img2,img3,img4,img5;
+	JEditorPane htmlPane;
+		
+	
+	public APPBOOKPARTNERS (){
+		
+		super ("GERAS - Gerador de Assinaturas BOOKPARTNERS");
+		
+		setIconImage(new ImageIcon(getClass().getResource("image002.png")).getImage());
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		} 
+		
+		//CONFIGURACAO DA JANELA
+		WindowConfig();
+		
+		//CENTRALIZAR JANELA
+		Centralizar();
+		
+		//CONTEUDO
+		ContentFrame();
+		
+	}
+	
+	public void ContentFrame (){
+				
+		loc1 = 270;
+		loc2 = 310;
+		loc11 = 200;
+		loc12 = 250;
+		loc13 = 300;
+		
+		img1 = new ImageIcon(getClass().getResource("image001.png"));
+		img2 = new ImageIcon(getClass().getResource("cia.png"));
+		img3 = new ImageIcon(getClass().getResource("b4editores.png"));
+		img4 = new ImageIcon(getClass().getResource("emporio.png"));
+		img5 = new ImageIcon(getClass().getResource("vertice.png"));
+				
+		LOGO = new JLabel ();
+		LOGO.setIcon(img1);
+		LOGO.setSize(170, 150);
+		LOGO.setLocation(10, 50);
+		LOGO.setHorizontalAlignment(SwingConstants.CENTER);
+		LOGO.setVerticalAlignment(SwingConstants.CENTER);
+		getContentPane().add(LOGO);
+		
+		//NOME
+		l1 = LabelPadrao (200,20,"Nome: "); //    TOP | LEFT | STRING A INSERIR
+		getContentPane().add(l1);
+		
+		t1 = CampoTextoPadrao (200,50,300); //    LEFT | TOP | TAMANHO DO CAMPO
+		getContentPane().add(t1);
+		t1.setHorizontalAlignment(JTextField.LEFT);
+		
+		
+		//EMAIL
+		l2 = LabelPadrao (200,80,"Email: "); //    TOP | LEFT | STRING A INSERIR
+		getContentPane().add(l2);
+		
+		t2 = CampoTextoPadrao (200,110,300); //    LEFT | TOP | TAMANHO DO CAMPO
+		getContentPane().add(t2);
+		t2.setHorizontalAlignment(JTextField.LEFT);
+		
+		
+		
+		//SETOR E CARGO
+		l3 = LabelPadrao (200,140,"Cargo/ Setor: "); //    TOP | LEFT | STRING A INSERIR
+		getContentPane().add(l3);
+		
+		t3 = CampoTextoPadrao (200,170,300); //    LEFT | TOP | TAMANHO DO CAMPO
+		getContentPane().add(t3);
+		t3.setHorizontalAlignment(JTextField.LEFT);
+		
+		
+		
+				//TELEFONE E RAMAL
+				l4 = LabelPadrao (200,200,"Telefone / Ramal: "); //    TOP | LEFT | STRING A INSERIR
+				getContentPane().add(l4);
+		
+				//TIPO DE TELEFONE
+				t4 = CampoTextoPadrao (200,230,40); //    LEFT | TOP | TAMANHO DO CAMPO
+				t4.setText("Tel.:");
+				t4.setBackground(null);
+				t4.setBorder(new LineBorder(Color.GRAY, 0));
+				getContentPane().add(t4);
+				t4.setHorizontalAlignment(JTextField.CENTER);
+		
+				//DDD
+				t5 = CampoTextoPadrao (250,230,40); //    LEFT | TOP | TAMANHO DO CAMPO
+				t5.setText("11");
+				getContentPane().add(t5);
+				t5.setHorizontalAlignment(JTextField.CENTER);
+		
+				//TELEFONE CAMPO 1
+				t6 = CampoTextoPadrao (300,230,130); //    LEFT | TOP | TAMANHO DO CAMPO
+				getContentPane().add(t6);
+				t6.setHorizontalAlignment(JTextField.CENTER);
+
+		
+				//TIPO DE TELEFONE
+		
+				t7 = CampoTextoPadrao (loc11,loc1,40); //    LEFT | TOP | TAMANHO DO CAMPO
+				t7.setText("Cel.:");
+				t7.setBorder(new LineBorder(Color.GRAY, 0));
+				t7.setBackground(null);
+				getContentPane().add(t7);
+				t7.setVisible(false);
+				t7.setHorizontalAlignment(JTextField.CENTER);
+		
+		
+				//DDD 2
+				t8 = CampoTextoPadrao (loc12,loc1,40); //    LEFT | TOP | TAMANHO DO CAMPO
+				t8.setText("11");
+				getContentPane().add(t8);
+				t8.setVisible(false);
+				t8.setHorizontalAlignment(JTextField.CENTER);
+		
+				t9 = CampoTextoPadrao (loc13,loc1,130); //    LEFT | TOP | TAMANHO DO CAMPO
+				getContentPane().add(t9);
+				t9.setVisible(false);
+				t9.setHorizontalAlignment(JTextField.CENTER);
+
+		
+		
+				//TIPO DE TELEFONE
+							
+				
+				t10 = CampoTextoPadrao (loc11,loc2,40); //    LEFT | TOP | TAMANHO DO CAMPO
+				t10.setText("Nextel.:");
+				t10.setBorder(new LineBorder(Color.GRAY, 0));
+				t10.setBackground(null);
+				getContentPane().add(t10);
+				t10.setVisible(false);
+				t10.setHorizontalAlignment(JTextField.CENTER);
+				
+				
+				
+				//DDD 2
+				t11 = CampoTextoPadrao (loc12,loc2,40); //    LEFT | TOP | TAMANHO DO CAMPO
+				t11.setText("11");
+				getContentPane().add(t11);
+				t11.setVisible(false);
+				t11.setHorizontalAlignment(JTextField.CENTER);
+
+				//TELEFONE CAMPO 3
+				
+				t12 = CampoTextoPadrao (loc13,loc2,130); //    LEFT | TOP | TAMANHO DO CAMPO
+				getContentPane().add(t12);
+				t12.setVisible(false);
+				t12.setHorizontalAlignment(JTextField.CENTER);
+		
+		sobre = new JLabel ();
+		sobre.setText("Sobre");
+		sobre.setForeground(Color.BLUE);
+		sobre.setBounds(460, 0, 100, 30);
+		getContentPane().add(sobre);
+		sobre.addMouseListener(new ChamarNovoPane());
+
+				
+		// BOTOES ADICIONAR
+		badc1 = new JLabel();
+		badc1.setText("+ Adicionar");
+		badc1.setBounds(loc11, loc1-10, 100, 30);
+		badc1.setFont(new Font("Arial", Font.BOLD, 12));
+		badc1.setToolTipText("Clique aqui para adicionar outro campo");
+		badc1.addMouseListener(new AdicionarL1Listener());
+		getContentPane().add(badc1);
+		
+		badc2 = new JLabel();
+		badc2.setText("+ Adicionar");
+		badc2.setBounds(loc11, loc2-10, 100, 30);
+		badc2.setFont(new Font("Arial", Font.BOLD, 12));
+		badc2.setToolTipText("Clique aqui para adicionar outro campo");
+		badc2.addMouseListener(new AdicionarL2Listener());
+		badc2.setVisible(false);
+		getContentPane().add(badc2);		
+
+		
+		//EMPRESAS
+		SlctEmp = new JComboBox<String>();
+		SlctEmp.addItem("BOOKPARTNERS");
+		SlctEmp.addItem("CIA DOS LIVROS");
+		SlctEmp.addItem("VERTICE BOOKS");
+		SlctEmp.addItem("B4 EDITORES");
+		SlctEmp.addItem("EMPORIO DO LIVRO");
+		SlctEmp.setBounds(10, 220, 170, 30);
+		SlctEmp.setBackground(Color.WHITE);
+		SlctEmp.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					
+					if (SlctEmp.getSelectedIndex() == 0) 
+						{LOGO.setIcon(img1);
+						 cor = "#C0504D";
+						 num = 0;
+						 ass = "BOOKPARTNERS";
+						}
+					if (SlctEmp.getSelectedIndex() == 1) 
+						{LOGO.setIcon(img2);
+						 cor = "#0061AF";
+						 num = 1;
+						 ass = "CIA DOS LIVROS";
+						}						}
+					if (SlctEmp.getSelectedIndex() == 2) 
+						{LOGO.setIcon(img5);
+						cor = "#C0504D";
+						 num = 2;
+						 ass = "VERTICEBOOKS";
+						}
+					if (SlctEmp.getSelectedIndex() == 3) 
+						{LOGO.setIcon(img3);
+						 cor = "#C0504D";
+						 num = 3;
+						 ass = "B4EDITORES";
+						}
+					if (SlctEmp.getSelectedIndex() == 4) 
+						{LOGO.setIcon(img4);
+						 cor = "#C0504D";
+						 num = 4;
+						 ass = "EMPORIO DO LIVRO";
+						}
+				
+				
+			}
+		});
+		getContentPane().add(SlctEmp);
+		
+		
+		//PAINEL HTML
+		htmlPane = new JEditorPane(); 
+		htmlPane.setEditable(true); 
+		htmlPane.setVisible(true);
+		htmlPane.setBackground(null);
+		htmlPane.setBorder(new LineBorder(Color.GRAY, 0));
+		htmlPane.setContentType("text/html");
+		JScrollPane scrollPane = new JScrollPane(htmlPane); 
+		htmlPane.setBounds (10,300,490,160);
+		getContentPane().add(htmlPane); 
+		
+		//BOTOES
+		b1 = new JButton ("Visualizar");
+		b1.setBounds(200, 470, 145, 30);
+		b1.setMnemonic('V');
+		getContentPane().add(b1);
+		b1.addActionListener (new BotaoVisualizarListener());
+		
+		b2 = new JButton ("Instalar Assinatura");
+		b2.setBounds(355, 470, 145, 30);
+		b2.setMnemonic('I');
+		getContentPane().add(b2);
+		b2.addActionListener(new BotaoInstalarListener());
+		
+	}
+	
+	class BotaoInstalarListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent arg0) {
+			caminho = System.getenv("APPDATA");
+			ass2 = t1.getText();
+			
+			File diretorio = new File(caminho+"/Microsoft/Assinaturas");
+			if (!diretorio.exists()) {  
+					System.out.println(diretorio);
+				   diretorio.mkdirs(); //mkdir() cria somente um diretório, mkdirs() cria diretórios e subdiretórios.  
+				}
+			
+			Path CaminhoPath = Paths.get(caminho+"/Microsoft/Assinaturas/"+ass+" - "+ass2+".htm");
+					
+			Charset iso = StandardCharsets.ISO_8859_1;
+			
+					try (BufferedWriter w  = Files.newBufferedWriter(CaminhoPath, iso)){
+						w.write(html);
+						JOptionPane.showMessageDialog(null, "Arquivo criado com sucesso");
+						
+					} catch (IOException e){
+						JOptionPane.showMessageDialog(null, "Não e possível criar o arquivo, verifique se tem acesso a pasta selecionada ou se voce tem Office instalado na maquina...");
+					}
+
+	}
+
+}
+		
+	public JTextField CampoTextoPadrao(int x,int y,int z){
+		JTextField jt = new JTextField();
+		jt.setHorizontalAlignment(JTextField.CENTER);
+		jt.setBounds(x, y, z, 30);
+		return jt;
+	}
+
+	class AdicionarL1Listener implements MouseListener {
+		public void mouseClicked(MouseEvent arg0) {
+			if (botaop1 == false){
+				t7.setVisible(false);
+				t8.setVisible(false);
+				t9.setVisible(false);
+				badc2.setVisible(false);
+				t10.setVisible(false);
+				t11.setVisible(false);
+				t12.setVisible(false);
+				badc1.setText("+ Adicionar");
+				badc1.setBounds(loc11, loc1-10, 100, 30);
+				b1.setBounds(200, 470, 145, 30);
+				b2.setBounds(355, 470, 145, 30);
+				htmlPane.setBounds (10,300,490,160);
+				setSize (530,550);
+				botaop1 = true;
+			}
+
+		}
+		public void mouseEntered(MouseEvent arg0) {
+			badc1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
+			badc1.setForeground(new Color(38,137,178));
+
+		}
+		public void mouseExited(MouseEvent arg0) {
+			badc1.setFont(new Font("Arial", Font.BOLD, 12));
+			badc1.setForeground(Color.BLACK);
+
+		}
+		public void mousePressed(MouseEvent arg0) {
+			if (botaop1 == true){
+				t7.setVisible(true);
+				t8.setVisible(true);
+				t9.setVisible(true);
+				badc1.setText("- Remover");
+				badc2.setVisible(true);
+				badc1.setBounds(440, loc1, 100, 30);
+				htmlPane.setBounds (10,330,490,160);
+				b1.setBounds(200, 500, 145, 30);
+				b2.setBounds(355, 500, 145, 30);
+				htmlPane.setBounds (10,300+30,490,160);
+				setSize (530,580);
+				botaop1 = false;
+			}
+
+		}
+		public void mouseReleased(MouseEvent arg0) {
+		}
+		
+	}
+	
+	class ChamarNovoPane implements MouseListener {
+		public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "GERAS - Gerador de Assinaturas BOOKPARTNERS\n Desenvolvido por: Willian Alves Andrioli");	
+		}
+
+		public void mouseEntered(MouseEvent e) {
+
+		}
+
+		public void mouseExited(MouseEvent e) {
+
+		}
+
+		public void mousePressed(MouseEvent e) {
+			JOptionPane.showMessageDialog(null, "GERAS - Gerador de Assinaturas BOOKPARTNERS\n Desenvolvido por: Willian Alves Andrioli");	
+		}
+
+		public void mouseReleased(MouseEvent e) {
+
+		}
+		
+	}
+	
+	class AdicionarL2Listener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			if (botaop2 == false){
+				t10.setVisible(false);
+				t11.setVisible(false);
+				t12.setVisible(false);
+				badc2.setText("+ Adicionar");
+				badc2.setBounds(loc11, loc2-10, 100, 30);
+				b1.setBounds(200, 500, 145, 30);
+				b2.setBounds(355, 500, 145, 30);
+				htmlPane.setBounds (10,300+30,490,160);
+				setSize (530,580);
+				botaop2 = true;
+			}
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			badc2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
+			badc2.setForeground(new Color(38,137,178));
+			
+		}
+
+		public void mouseExited(MouseEvent arg0) {
+			badc2.setFont(new Font("Arial", Font.BOLD, 12));
+			badc2.setForeground(Color.BLACK);			
+		}
+
+		public void mousePressed(MouseEvent arg0) {
+			if (botaop2 == true){
+				t10.setVisible(true);
+				t11.setVisible(true);
+				t12.setVisible(true);
+				badc2.setText("- Remover");
+				badc2.setBounds(440, loc2, 100, 30);
+				htmlPane.setBounds (10,330,490,160);
+				b1.setBounds(200, 520, 145, 30);
+				b2.setBounds(355, 520, 145, 30);
+				htmlPane.setBounds (10,300+50,490,160);
+				setSize (530,610);
+				botaop2 = false;
+			}
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {			
+		}
+		
+				
+	}
+	
+	class BotaoVisualizarListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			String Nome = t1.getText();
+			String Tipof1 = t7.getText();
+			String Tipof2 = t10.getText();
+			String Setor = t3.getText();
+			String fone1 = t5.getText();
+			String fone2 = t6.getText();
+			String fone3 = t8.getText();
+			String fone4 = t9.getText();
+			String fone5 = t11.getText();
+			String fone6 = t12.getText();
+			String email = t2.getText();
+			
+				html = "<html><head><title></title></head>\n\n<body>\n\n<table>\n<tr>\n";
+					if (num==0) htmlaux = "<td><img src ='http://www.bookpartner.com.br/marketing/logo_assinatura_book.JPG'></td><td width='20'><img src='http://www.bookpartner.com.br/marketing/logo_assinatura_barra.JPG'></td><td><b><span style='font-size:9.0pt;color:#C00000;font-family:arial'>"+Nome+"</span></b>";
+					if (num==1) htmlaux = "<td><img src ='http://www.bookpartner.com.br/marketing/logo_assinatura_cia.JPG'></td><td width='20'><img src='http://www.bookpartner.com.br/marketing/logo_assinatura_barra.JPG'></td><td><b><span style='font-size:9.0pt;color:#0061AF;font-family:arial'>"+Nome+"</span></b>";
+					if (num==2) htmlaux = "<td><img src ='http://www.bookpartner.com.br/marketing/logo_assinatura_vertice.JPG'></td><td width='20'><img src='http://www.bookpartner.com.br/marketing/logo_assinatura_barra.JPG'></td><td><b><span style='font-size:9.0pt;color:#7030A0;font-family:arial'>"+Nome+"</span></b>";
+					if (num==3) htmlaux = "<td><img src ='http://www.bookpartner.com.br/marketing/logo_assinatura_b4.JPG'></td><td width='20'><img src='http://www.bookpartner.com.br/marketing/logo_assinatura_barra.JPG'></td><td><b><span style='font-size:9.0pt;color:#ED1C24;font-family:arial'>"+Nome+"</span></b>";
+					if (num==4) htmlaux = "<td><img src ='http://www.bookpartner.com.br/marketing/logo_assinatura_emporio.JPG'></td><td width='20'><img src='http://www.bookpartner.com.br/marketing/logo_assinatura_barra.JPG'></td><td><b><span style='font-size:9.0pt;color:#F79646;font-family:arial'>"+Nome+"</span></b>";
+				html = html + htmlaux;
+				htmlaux = "<br><b><span style='font-size:8.5pt;color:gray;font-family:arial'>"+Setor+"</span></b><br><span style='font-size:8.5pt;color:gray;font-family:arial'>Tel.: + 55 "+fone1+" "+fone2;
+				html = html + htmlaux;
+					if (botaop1 == false) htmlaux = "<br>"+Tipof1+" + 55 "+fone3+" "+fone4+"<br><br>";
+					if (botaop2 == false && botaop1 == false) htmlaux = "<br>"+Tipof1+" + 55 "+fone3+" "+fone4+"<BR>"+Tipof2+ " + 55 "+fone5+" "+fone6+"<br>";
+					if (botaop1 == true && botaop2 == true) htmlaux = "<br><br>";
+				html = html + htmlaux;
+					if (num==0)htmlaux = "</span><span style='font-size:8.5pt;color:#C0504D;font-family:arial'><a href='mailto:"+email+"'><font color='#C0504D'>"+email+"</font></a></span><br>";
+					if (num==1)htmlaux = "</span><span style='font-size:8.5pt;color:#0061AF;font-family:arial'><a href='mailto:"+email+"'><font color='#0061AF'>"+email+"</font></a></span><br>";
+					if (num==2)htmlaux = "</span><span style='font-size:8.5pt;color:#7030A0;font-family:arial'><a href='mailto:"+email+"'><font color='#7030A0'>"+email+"</font></a></span><br>";
+					if (num==3)htmlaux = "</span><span style='font-size:8.5pt;color:#ED1C24;font-family:arial'><a href='mailto:"+email+"'><font color='#ED1C24'>"+email+"</font></a></span><br>";
+					if (num==4)htmlaux = "</span><span style='font-size:8.5pt;color:#F79646;font-family:arial'><a href='mailto:"+email+"'><font color='#F79646'>"+email+"</font></a></span><br>";
+
+					
+				html = html + htmlaux;
+					if (num==0) htmlaux = "<span style='font-size:8.5pt;font-family:arial;color:#C00000;'><a href='www.bookpartners.com.br'><font color='#C0504D'>www.bookpartners.com.br</font></a></span><br>";
+					if (num==1) htmlaux = "<span style='font-size:8.5pt;font-family:arial;color:#0061AF;'><a href='www.ciadoslivros.com.br'><font color='#0061AF'>www.ciadoslivros.com.br</font></a></span><br>";
+					if (num==2) htmlaux = "<span style='font-size:8.5pt;font-family:arial;color:#7030A0;'><a href='www.verticebooks.com.br'><font color='#7030A0'>www.verticebooks.com.br</font></a><br><a href='http://www.youtube.com/watch?v=_nTjGLoyb7I'><font color='#7030A0'>Conheça nossa empresa</font></a></span>";
+					if (num==3) htmlaux = "<span style='font-size:8.5pt;font-family:arial;color:#ED1C24;'><a href='www.b4editores.com.br'><font color='#ED1C24'>www.b4editores.com.br</font></a></span><br>";
+					if (num==4) htmlaux = "<span style='font-size:8.5pt;font-family:arial;color:#F79646;'><a href='www.emporiodolivro.com.br'><font color='#F79646'>www.emporiodolivro.com.br</font></a></span><br>";
+				html = html + htmlaux;
+					
+				htmlaux = "</td></tr></table></body></html>";
+				html = html + htmlaux;
+				
+			htmlPane.setText(html);
+		}
+	}
+	
+	public void WindowConfig () {
+		setSize (530,550);
+		setResizable(false);
+		getContentPane().setLayout(null);
+		getContentPane().setBackground(Color.WHITE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		 
+	     
+	}
+	
+	public JLabel LabelPadrao(int x,int y, String z) {
+		JLabel jl = new JLabel();
+		jl.setText(z);
+		jl.setSize(120, 30);
+		jl.setLocation(x, y);
+		jl.setHorizontalAlignment(SwingConstants.LEFT);
+		jl.setVerticalAlignment(SwingConstants.CENTER);
+		return jl;
+	}
+	
+	public void Centralizar(){
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension janela = getSize();
+		if (janela.height > screen.height) setSize(janela.width, screen.height);
+		if (janela.width > screen.width) setSize(screen.width, janela.height);
+		
+		setLocation((screen.width - janela.width)/2,(screen.height - janela.height)/2);
+	}
+		
+	public static void main (String args[]){
+		APPBOOKPARTNERS JanelaPrincipal = new APPBOOKPARTNERS ();
+		JanelaPrincipal.setVisible(true);
+		
+	}
+
+}
+
