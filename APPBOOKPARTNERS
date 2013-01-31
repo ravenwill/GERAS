@@ -125,81 +125,77 @@ public class APPBOOKPARTNERS extends JFrame{
 		
 		
 		
-				//TELEFONE E RAMAL
-				l4 = LabelPadrao (200,200,"Telefone / Ramal: "); //    TOP | LEFT | STRING A INSERIR
-				getContentPane().add(l4);
+		//TELEFONE E RAMAL
+		l4 = LabelPadrao (200,200,"Telefone / Ramal: "); //    TOP | LEFT | STRING A INSERIR
+		getContentPane().add(l4);
 		
-				//TIPO DE TELEFONE
-				t4 = CampoTextoPadrao (200,230,40); //    LEFT | TOP | TAMANHO DO CAMPO
-				t4.setText("Tel.:");
-				t4.setBackground(null);
-				t4.setBorder(new LineBorder(Color.GRAY, 0));
-				getContentPane().add(t4);
-				t4.setHorizontalAlignment(JTextField.CENTER);
+		//TIPO DE TELEFONE
+		t4 = CampoTextoPadrao (200,230,40); //    LEFT | TOP | TAMANHO DO CAMPO
+		t4.setText("Tel.:");
+		t4.setBackground(null);
+		t4.setBorder(new LineBorder(Color.GRAY, 0));
+		getContentPane().add(t4);
+		t4.setHorizontalAlignment(JTextField.CENTER);
 		
-				//DDD
-				t5 = CampoTextoPadrao (250,230,40); //    LEFT | TOP | TAMANHO DO CAMPO
-				t5.setText("11");
-				getContentPane().add(t5);
-				t5.setHorizontalAlignment(JTextField.CENTER);
+		//DDD
+		t5 = CampoTextoPadrao (250,230,40); //    LEFT | TOP | TAMANHO DO CAMPO
+		t5.setText("11");
+		getContentPane().add(t5);
+		t5.setHorizontalAlignment(JTextField.CENTER);
 		
-				//TELEFONE CAMPO 1
-				t6 = CampoTextoPadrao (300,230,130); //    LEFT | TOP | TAMANHO DO CAMPO
-				getContentPane().add(t6);
-				t6.setHorizontalAlignment(JTextField.CENTER);
+		//TELEFONE CAMPO 1
+		t6 = CampoTextoPadrao (300,230,130); //    LEFT | TOP | TAMANHO DO CAMPO
+		getContentPane().add(t6);
+		t6.setHorizontalAlignment(JTextField.CENTER);
 
 		
-				//TIPO DE TELEFONE
+		//TIPO DE TELEFONE
 		
-				t7 = CampoTextoPadrao (loc11,loc1,40); //    LEFT | TOP | TAMANHO DO CAMPO
-				t7.setText("Cel.:");
-				t7.setBorder(new LineBorder(Color.GRAY, 0));
-				t7.setBackground(null);
-				getContentPane().add(t7);
-				t7.setVisible(false);
-				t7.setHorizontalAlignment(JTextField.CENTER);
+		t7 = CampoTextoPadrao (loc11,loc1,40); //    LEFT | TOP | TAMANHO DO CAMPO
+		t7.setText("Cel.:");
+		t7.setBorder(new LineBorder(Color.GRAY, 0));
+		t7.setBackground(null);
+		getContentPane().add(t7);
+		t7.setVisible(false);
+		t7.setHorizontalAlignment(JTextField.CENTER);
 		
 		
-				//DDD 2
-				t8 = CampoTextoPadrao (loc12,loc1,40); //    LEFT | TOP | TAMANHO DO CAMPO
-				t8.setText("11");
-				getContentPane().add(t8);
-				t8.setVisible(false);
-				t8.setHorizontalAlignment(JTextField.CENTER);
+		//DDD 2
+		t8 = CampoTextoPadrao (loc12,loc1,40); //    LEFT | TOP | TAMANHO DO CAMPO
+		t8.setText("11");
+		getContentPane().add(t8);
+		t8.setVisible(false);
+		t8.setHorizontalAlignment(JTextField.CENTER);
 		
-				t9 = CampoTextoPadrao (loc13,loc1,130); //    LEFT | TOP | TAMANHO DO CAMPO
-				getContentPane().add(t9);
-				t9.setVisible(false);
-				t9.setHorizontalAlignment(JTextField.CENTER);
+		t9 = CampoTextoPadrao (loc13,loc1,130); //    LEFT | TOP | TAMANHO DO CAMPO
+		getContentPane().add(t9);
+		t9.setVisible(false);
+		t9.setHorizontalAlignment(JTextField.CENTER);
 
-		
-		
-				//TIPO DE TELEFONE
+		//TIPO DE TELEFONE
 							
+		t10 = CampoTextoPadrao (loc11,loc2,40); //    LEFT | TOP | TAMANHO DO CAMPO
+		t10.setText("Nextel.:");
+		t10.setBorder(new LineBorder(Color.GRAY, 0));
+		t10.setBackground(null);
+		getContentPane().add(t10);
+		t10.setVisible(false);
+		t10.setHorizontalAlignment(JTextField.CENTER);
 				
-				t10 = CampoTextoPadrao (loc11,loc2,40); //    LEFT | TOP | TAMANHO DO CAMPO
-				t10.setText("Nextel.:");
-				t10.setBorder(new LineBorder(Color.GRAY, 0));
-				t10.setBackground(null);
-				getContentPane().add(t10);
-				t10.setVisible(false);
-				t10.setHorizontalAlignment(JTextField.CENTER);
-				
-				
-				
-				//DDD 2
-				t11 = CampoTextoPadrao (loc12,loc2,40); //    LEFT | TOP | TAMANHO DO CAMPO
-				t11.setText("11");
-				getContentPane().add(t11);
-				t11.setVisible(false);
-				t11.setHorizontalAlignment(JTextField.CENTER);
+		
+		//DDD 2
+		t11 = CampoTextoPadrao (loc12,loc2,40); //    LEFT | TOP | TAMANHO DO CAMPO
+		t11.setText("11");
+		getContentPane().add(t11);
+		t11.setVisible(false);
+		t11.setHorizontalAlignment(JTextField.CENTER);
 
-				//TELEFONE CAMPO 3
+		//TELEFONE CAMPO 3
 				
-				t12 = CampoTextoPadrao (loc13,loc2,130); //    LEFT | TOP | TAMANHO DO CAMPO
-				getContentPane().add(t12);
-				t12.setVisible(false);
-				t12.setHorizontalAlignment(JTextField.CENTER);
+		t12 = CampoTextoPadrao (loc13,loc2,130); //    LEFT | TOP | TAMANHO DO CAMPO
+		getContentPane().add(t12);
+		t12.setVisible(false);
+		t12.setHorizontalAlignment(JTextField.CENTER);
 		
 		sobre = new JLabel ();
 		sobre.setText("Sobre");
